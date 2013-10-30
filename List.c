@@ -32,6 +32,14 @@ void DeleteList(List *plist)
 		free(plist->cur);
 		plist->cur = plist->head->next;
 	}
+	
+	else if(plist->cur == plist->tail)
+	{
+		Node *delNode = plist->cur;
+		plist->cur = FindPrevNode(plist,delNode);
+		plist->tail = plist->cur;
+		free(delNode);
+	}
 
 	else
 	{
