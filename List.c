@@ -28,11 +28,15 @@ void DeleteList(List *plist)
 {
 	if(plist->cur == plist->head)
 	{
+		plist->head = NULL;
+
+		if(plist->NumOfList > 1)
 		plist->head = plist->cur->next;
+
 		free(plist->cur);
-		plist->cur = plist->head->next;
+		plist->cur = plist->head;
 	}
-	
+
 	else if(plist->cur == plist->tail)
 	{
 		Node *delNode = plist->cur;
@@ -48,6 +52,13 @@ void DeleteList(List *plist)
 		plist->cur->next = delNode->next;
 		free(delNode);
 	}
+
+	plist->NumOfList--;
+}
+
+ void ListCount(List *plist)
+{
+	printf("list count : %d \n",plist->NumOfList);
 }
 
 Node* FindPrevNode(List *plist,Node *pNode)
